@@ -1,18 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 26
+
 int adj[MAX][MAX], visited[MAX], stack[MAX], top = -1;
+
 void dfs(int v, int n) {
     visited[v] = 1;
-    for (int i = 0; i < n; i++) {
+    int i;  // Declare the loop variable outside the for loop
+    for (i = 0; i < n; i++) {
         if (adj[v][i] && !visited[i]) {
             dfs(i, n);
         }
     }
     stack[++top] = v;
 }
+
 void topologicalSort(int n) {
-    for (int i = 0; i < n; i++) {
+    int i;  // Declare the loop variable outside the for loop
+    for (i = 0; i < n; i++) {
         if (!visited[i]) {
             dfs(i, n);
         }
@@ -22,6 +27,7 @@ void topologicalSort(int n) {
     }
     printf("\n");
 }
+
 int main() {
     int n = 6;
 
